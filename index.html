@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+
+
+
+        Hi there! Theme by Aiden Holmans, 2015.
+
+
+
+        -->
+
+        <meta name="if:Enable endless scrolling" content="1">
+
+        <title>{Title}</title>
+
+        <style type="text/css">
+
+        h4 {
+            font-family:arial;
+            font-weight:normal;
+            font-size:15px;
+        }
+
+        h6 {
+            font-family:arial;
+            font-weight:normal;
+            font-size:10px;
+
+        }
+
+        a:link {
+            color:black;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        a:visited {
+            color:black;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        #fixed_header {
+          /*position:fixed;*/
+        }
+
+        .caption {
+            margin-top:-20px;
+            max-width:200px;
+            visibility:hidden;
+        }
+
+        .header_title {
+            margin-left:1%;
+        }
+
+        .links {
+            margin-left:2%;
+            margin-top:-20px;
+        }
+
+        .link {
+            width:150px;
+            padding-top:40px;
+            padding-left:20px;
+            padding-right:20px;
+
+            font-family:arial;
+            font-weight:normal;
+            font-size:12px;
+        }
+
+        .navigation {
+            position:relative;
+            top:90%;
+            margin-left:90%;
+            margin-bottom:40px;
+
+            font-family:arial;
+            font-weight:normal;
+            font-size:10px;
+        }
+
+        .navibox {
+            width:50px;
+            border: 1px solid #111;
+            text-align: center;
+        }
+
+        .body_align {
+            display: flex;
+            flex-flow: row wrap;
+            align-content: space-around;
+
+            margin:auto;
+            padding-bottom:100px;
+
+            width:1175px;
+        }
+
+        .imgpost {
+            width:200px;
+            height:200px;
+            position:relative;
+            overflow:visible;
+            float:left;
+            vertical-align:middle;
+
+            padding-top:40px;
+            margin:1%;
+        }
+
+        .imgpost img {
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            max-height:220px; max-width:200px;
+        }
+
+        .imgpost {
+            overflow:visible;
+        }
+
+        .imgpost2 {
+            margin-top: 20px;
+        }
+
+        .imgpost2 img {
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+            margin-top:20px;
+            max-height:800px; max-width:800px;
+        }
+
+        </style>
+
+        {block:IfEnableEndlessScrolling}
+            <script type="text/javascript" src="http://static.tumblr.com/0szq8b5/R0cmg0bw1/tumblr-endless-scrolling.js"></script>
+        {/block:IfEnableEndlessScrolling}
+
+    </head>
+
+    <body>
+
+        <script>
+            function resizeImage(id) {
+                var NAME = document.getElementById(id);
+                var currentClass = NAME.className;
+
+                if (currentClass == "imgpost") {
+                    NAME.className = "imgpost2";
+                    document.getElementById('id').style.visibility='visible';
+                }
+
+                else {
+                    NAME.className = "imgpost";
+                    document.getElementById('id').style.visibility='hidden';
+                }
+            }
+        </script>
+
+        <div id="fixed_header">
+            <div class = header_title>
+                <a href="[HOME LINK]"><h4>{Title}</h4></a>
+            </div>
+
+            <div class = links>
+                <h6>
+                <a href="mailto:aidenalexh@gmail.com">email</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="[RESUME]" target="_blank">resume</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="https://github.com/AidenH" target="_blank">github</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </h6>
+            </div>
+        </div>
+
+
+        <div class = body_align>
+            {block:Posts}{block:Text}
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}{Body}
+                {/block:Text}
+                {block:Photo}
+                <div class = imgpost onclick="resizeImage({PostID});" id="{PostID}">
+                        <a>
+                        <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" style="cursor:pointer"/>
+                        </a>
+
+                        {block:Caption}
+                            <div class="caption" id="visi"><h6>{Caption}</h6></div>
+                        {/block:Caption}
+                </div>
+                {/block:Photo}
+                {block:Panorama}
+                        {LinkOpenTag}
+                            <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}"/>
+                        {LinkCloseTag}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                {/block:Panorama}
+                {block:Photoset}
+                        {Photoset-500}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                {/block:Photoset}
+                {block:Quote}
+                        "{Quote}"
+
+                        {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                {/block:Quote}
+                {block:Link}
+                        <a href="{URL}" class="link" {Target} target="_blank">{Name} (Link)</a>
+
+                        {block:Description}
+                            <div class="description">{Description}</div>
+                        {/block:Description}
+                {/block:Link}
+                {block:Chat}
+                        {block:Title}
+                            <h3><a href="{Permalink}">{Title}</a></h3>
+                        {/block:Title}
+
+                            {block:Lines}
+                                    {block:Label}
+                                        <span class="label">{Label}</span>
+                                    {/block:Label}{Line}
+                            {/block:Lines}
+                {/block:Chat}
+                {block:Video}
+                        {Video-500}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                {/block:Video}
+                {block:Audio}
+                        {AudioEmbed}
+                        {block:Caption}
+                            <div class="caption">{Caption}</div>
+                        {/block:Caption}
+                {/block:Audio}
+                {/block:Posts}
+            </div>
+
+            <div class = navigation>
+            {block:Pagination}
+                {block:PreviousPage}
+                    <div class="navibox"><a href="{PreviousPage}">&#171; prev</a></div>
+                {/block:PreviousPage}
+                {block:NextPage}
+                    <div class="navibox"><a href="{NextPage}">next &#187;</a></div>
+                {/block:NextPage}
+            {/block:Pagination}
+            </div>
+
+    </body>
+
+</html>
